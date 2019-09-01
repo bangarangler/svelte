@@ -1,24 +1,36 @@
 <script>
-	let name = 'Jon';
-	let age = 31;
+  let name = 'Jon';
+  let age = 31;
 
-	$: uppercaseName = name.toUpperCase();
+  $: uppercaseName = name.toUpperCase();
 
-	function incrementAge() {
-		age = age += 1;
+	$: console.log(name);
+
+	$: if (name === 'Jonathan') {
+		age = 31;
 	}
 
-	function changeName() {
-		name = 'Jonathan';
+  function incrementAge() {
+    age = age += 1;
+  }
+
+  function changeName() {
+    name = 'Jonathan';
+  }
+
+	function nameInput(event) {
+		const enteredValue = event.target.value;
+		name = enteredValue;
 	}
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
+  h1 {
+    color: purple;
+  }
 </style>
 
 <h1>Hello {uppercaseName}, my age is {age}!</h1>
-<button on:click={incrementAge}>Change Age</button>
-<button on:click={changeName}>Change Name</button>
+<button on:click="{incrementAge}">Change Age</button>
+<!--<button on:click="{changeName}">Change Name</button>-->
+<input type="text" value={name} on:input={nameInput}>
