@@ -2,52 +2,49 @@
   import ContactCard from './ContactCard.svelte';
 
   let name = 'Jon';
-  let jobTitle = '';
-  let image = "";
+  let title = '';
+  let image = '';
   let description = '';
-  let age = 31;
+  let done = false;
 
-  $: uppercaseName = name.toUpperCase();
-
-  $: console.log(name);
-
-  $: if (name === 'Jonathan') {
-    age = 31;
-  }
-
-  function incrementAge() {
-    age = age += 1;
-  }
-
-  function changeName() {
-    name = 'Jonathan';
-  }
-
-  function nameInput(event) {
-    const enteredValue = event.target.value;
-    name = enteredValue;
+  function addContact() {
+    done = true;
   }
 </script>
 
 <style>
-  h1 {
-    color: purple;
+  #form {
+    width: 30rem;
+    max-width: 100%;
   }
 </style>
 
-<h1>Hello {uppercaseName}, my age is {age}!</h1>
-<button on:click="{incrementAge}">Change Age</button>
-<!--<button on:click="{changeName}">Change Name</button>-->
-<!--<input type="text" value={name} on:input={nameInput}>-->
-<!--two way data binding below-->
-<input type="text" bind:value="{name}" />
-<input type="text" bind:value="{jobTitle}" />
-<input type="text" bind:value="{image}" />
-<textarea rows="3" bind:value="{description}" />
+<div id="form">
+  <div class="form-control">
+    <label for="userName">User Name</label>
+    <input type="text" bind:value="{name}" id="userName" />
+  </div>
+  <div class="form-control">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" bind:value="{title}" id="jobTitle" />
+  </div>
+  <div class="form-control">
+    <label for="image">Image URL</label>
+    <input type="text" bind:value="{image}" id="image" />
+  </div>
+  <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea rows="3" bind:value="{description}" id="desc" />
+  </div>
+</div>
 
+<button on:click={addContact}>Add Contact Card</button>
+
+{#if done}
 <ContactCard
   {name}
-  {jobTitle}
+  {title}
   {description}
   {image}
 />
+{/if}
