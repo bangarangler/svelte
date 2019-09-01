@@ -2,15 +2,18 @@
   import ContactCard from './ContactCard.svelte';
 
   let name = 'Jon';
+  let jobTitle = '';
+  let image = "";
+  let description = '';
   let age = 31;
 
   $: uppercaseName = name.toUpperCase();
 
-	$: console.log(name);
+  $: console.log(name);
 
-	$: if (name === 'Jonathan') {
-		age = 31;
-	}
+  $: if (name === 'Jonathan') {
+    age = 31;
+  }
 
   function incrementAge() {
     age = age += 1;
@@ -20,10 +23,10 @@
     name = 'Jonathan';
   }
 
-	function nameInput(event) {
-		const enteredValue = event.target.value;
-		name = enteredValue;
-	}
+  function nameInput(event) {
+    const enteredValue = event.target.value;
+    name = enteredValue;
+  }
 </script>
 
 <style>
@@ -37,6 +40,14 @@
 <!--<button on:click="{changeName}">Change Name</button>-->
 <!--<input type="text" value={name} on:input={nameInput}>-->
 <!--two way data binding below-->
-<input type="text" bind:value={name} />
+<input type="text" bind:value="{name}" />
+<input type="text" bind:value="{jobTitle}" />
+<input type="text" bind:value="{image}" />
+<textarea rows="3" bind:value="{description}" />
 
-<ContactCard />
+<ContactCard
+  userName="{name}"
+  jobTitle="{jobTitle}"
+  description="{description}"
+  image={image}
+/>
