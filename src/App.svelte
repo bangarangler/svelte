@@ -46,8 +46,8 @@
 <textarea rows="3" bind:value="{description}" />
 
 <ContactCard
-  userName="{name}"
-  jobTitle="{jobTitle}"
-  description="{description}"
-  image={image}
+  {name}
+  {jobTitle}
+  {description}
+  {image}
 />

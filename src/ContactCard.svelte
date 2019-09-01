@@ -25,6 +25,11 @@
     height: 100%;
   }
 
+  .thumb-placeholder {
+    background: #ccc;
+
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -61,8 +66,8 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
-      <img src={image}  />
+    <div class="thumb" class:thumb-placeholder={!image}>
+      <img src={image} alt={userName}  />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
