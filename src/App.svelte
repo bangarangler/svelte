@@ -8,7 +8,8 @@
   let formState = "empty";
   let createdContacts = [];
 
-  function addContact() {
+  function addContact(event) {
+    /*e.preventDefault();*/
     if (userName.trim().length == 0 || jobTitle.trim().length == 0 ||
       image.trim().length == 0 || description.trim().length == 0) {
       formState = 'invalid';
@@ -37,10 +38,11 @@
   #form {
     width: 30rem;
     max-width: 100%;
+    margin: 1rem 0;
   }
 </style>
 
-<div id="form">
+<form id="form">
   <div class="form-control">
     <label for="userName">User Name</label>
     <input type="text" bind:value="{userName}" id="userName" />
@@ -57,9 +59,9 @@
     <label for="desc">Description</label>
     <textarea rows="3" bind:value="{description}" id="desc" />
   </div>
-</div>
+  <button type="submit" on:click|preventDefault={addContact}>Add Contact Card</button>
+</form>
 
-<button on:click={addContact}>Add Contact Card</button>
 <button on:click={deleteFirst}>Delete First</button>
 <button on:click={deleteLast}>Delete Laxt</button>
 
